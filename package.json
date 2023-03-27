@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/xclusive36/ReadmeGenerator#readme",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "inquirer": "^8.2.4"
   }
 }
