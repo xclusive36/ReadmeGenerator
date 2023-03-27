@@ -1,5 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
+const fs = require("fs");
+const generateMarkdown = require("./utils/generateMarkdown");
 
 let myAnswers = {};
 
@@ -71,28 +73,33 @@ const questions = [
   },
   {
     type: "input",
-    name: "motivation",
-    message: "What was your motivation?",
+    name: "installation",
+    message: "Define your project installation instructions:",
   },
   {
     type: "input",
-    name: "why",
-    message: "Why did you build this project?",
+    name: "usage",
+    message: "What is the usage information for the project?",
   },
   {
     type: "input",
-    name: "problem",
-    message: "What problem does it solve?",
+    name: "guidelines",
+    message: "Enter your contribution guidelines:",
   },
   {
     type: "input",
-    name: "learned",
-    message: "What did you learn?",
+    name: "test",
+    message: "What are your test instructions?",
   },
   {
     type: "input",
-    name: "standout",
-    message: "What makes your project stand out?",
+    name: "username",
+    message: "Enter your GitHub username",
+  },
+  {
+    type: "input",
+    name: "email",
+    message: "Enter your GitHub email address",
   },
   {
     type: "list",
@@ -100,15 +107,29 @@ const questions = [
     message: "What license do you want to use?",
     choices: licenses,
   },
+  {
+    type: "input",
+    name: "readme",
+    message: "What do you want to name your README file?",
+    default: "README.md",
+  },
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  fs.writeFile(fileName, data, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Success!");
+    }
+  });
+}
 
 const getAvailableLicenses = () => {};
 
 const askQuestions = (questions) => {
-  answers = inquirer
+  inquirer
     .prompt(questions)
     .then((answers) => {
       // Use user feedback for... whatever!!
@@ -124,11 +145,11 @@ const askQuestions = (questions) => {
         })
         .then((confirm) => {
           if (confirm) {
-            myAnswers = answers;
             console.log("Generating README...");
+            const generated = generateMarkdown(answers);
+            writeToFile(answers.readme, generated);
           } else {
             console.log("No README was generated, have a nice day!");
-            askQuestions(questions);
           }
         });
     })
@@ -140,12 +161,12 @@ const askQuestions = (questions) => {
         );
       } else {
         // Something else went wrong
-        console.log("Error: Something else went wrong");
+        console.log("Error: Something else went wrong", error);
       }
     });
 };
 
-// TODO: Create a function to initialize app
+// Create a function to initialize app
 function init() {
   console.log("Welcome to the README Generator!");
   console.log("Please answer the following questions:");
