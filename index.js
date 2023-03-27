@@ -9,52 +9,27 @@ let myAnswers = {};
 const licenses = [
   {
     key: "mit",
-    name: "MIT License",
-    spdx_id: "MIT",
-    url: "https://api.github.com/licenses/mit",
-    node_id: "MDc6TGljZW5zZW1pdA==",
+    name: "MIT",
   },
   {
     key: "lgpl-3.0",
-    name: "GNU Lesser General Public License v3.0",
-    spdx_id: "LGPL-3.0",
-    url: "https://api.github.com/licenses/lgpl-3.0",
-    node_id: "MDc6TGljZW5zZW1pdA==",
+    name: "LGPL",
   },
   {
     key: "mpl-2.0",
-    name: "Mozilla Public License 2.0",
-    spdx_id: "MPL-2.0",
-    url: "https://api.github.com/licenses/mpl-2.0",
-    node_id: "MDc6TGljZW5zZW1pdA==",
+    name: "MPL",
   },
   {
     key: "agpl-3.0",
-    name: "GNU Affero General Public License v3.0",
-    spdx_id: "AGPL-3.0",
-    url: "https://api.github.com/licenses/agpl-3.0",
-    node_id: "MDc6TGljZW5zZW1pdA==",
-  },
-  {
-    key: "unlicense",
-    name: "The Unlicense",
-    spdx_id: "Unlicense",
-    url: "https://api.github.com/licenses/unlicense",
-    node_id: "MDc6TGljZW5zZW1pdA==",
+    name: "AGPL",
   },
   {
     key: "apache-2.0",
-    name: "Apache License 2.0",
-    spdx_id: "Apache-2.0",
-    url: "https://api.github.com/licenses/apache-2.0",
-    node_id: "MDc6TGljZW5zZW1pdA==",
+    name: "Apache",
   },
   {
     key: "gpl-3.0",
-    name: "GNU General Public License v3.0",
-    spdx_id: "GPL-3.0",
-    url: "https://api.github.com/licenses/gpl-3.0",
-    node_id: "MDc6TGljZW5zZW1pdA==",
+    name: "GPL",
   },
 ];
 
@@ -122,6 +97,7 @@ function writeToFile(fileName, data) {
       console.log(err);
     } else {
       console.log("Success!");
+      console.log(`Check ${fileName} for your generated README file!`);
     }
   });
 }
@@ -145,6 +121,9 @@ const askQuestions = (questions) => {
         })
         .then((confirm) => {
           if (confirm) {
+            // licenses.find((license) => {
+            //   answers.license = license.spdx_id;
+            // });
             console.log("Generating README...");
             const generated = generateMarkdown(answers);
             writeToFile(answers.readme, generated);
