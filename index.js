@@ -90,67 +90,59 @@ const questions = [
   },
 ];
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-  fs.writeFile(fileName, data, (err) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Success!");
-      console.log(`Check ${fileName} for your generated README file!`);
+// unction to write README file
+function writeToFile(fileName, data) { // Write file
+  fs.writeFile(fileName, data, (err) => { // Write file
+    if (err) { // If there is an error
+      console.log(err); // Log the error
+    } else { // If there is no error
+      console.log("Success!"); // Log success
+      console.log(`Check ${fileName} for your generated README file!`); // Log success
     }
   });
 }
 
-const getAvailableLicenses = () => {};
-
-const askQuestions = (questions) => {
-  inquirer
-    .prompt(questions)
-    .then((answers) => {
-      // Use user feedback for... whatever!!
-      console.log("Thank you for your answers!");
-      console.log("Here are the answers you provided:");
-      console.log(answers);
-      const generate = inquirer
-        .prompt({
+const askQuestions = (questions) => { // Ask questions
+  inquirer // Use inquirer
+    .prompt(questions) // Prompt questions
+    .then((answers) => { // Use user feedback for... whatever!!
+      console.log("Thank you for your answers!"); // Log success
+      console.log("Here are the answers you provided:"); // Log success
+      console.log(answers); // Log answers
+      const generate = inquirer // Use inquirer
+        .prompt({ // Prompt questions
           type: "confirm",
           name: "confirm",
           message: "Are you sure you want to generate the README?",
           default: true,
         })
-        .then((confirm) => {
-          if (confirm) {
-            // licenses.find((license) => {
-            //   answers.license = license.spdx_id;
-            // });
-            console.log("Generating README...");
-            const generated = generateMarkdown(answers);
-            writeToFile(answers.readme, generated);
-          } else {
-            console.log("No README was generated, have a nice day!");
+        .then((confirm) => { // Use user feedback for... whatever!!
+          if (confirm) { // If user confirms
+            console.log("Generating README..."); // Log success
+            const generated = generateMarkdown(answers); // Generate README
+            writeToFile(answers.readme, generated); // Write README
+          } else { // If user does not confirm
+            console.log("No README was generated, have a nice day!"); // Log result
           }
         });
     })
-    .catch((error) => {
-      if (error.isTtyError) {
-        // Prompt couldn't be rendered in the current environment
+    .catch((error) => { // If there is an error
+      if (error.isTtyError) { // Prompt couldn't be rendered in the current environment
         console.log(
           "Error: Prompt couldn't be rendered in the current environment"
-        );
-      } else {
-        // Something else went wrong
-        console.log("Error: Something else went wrong", error);
+        ); // Log error
+      } else { // Something else went wrong
+        console.log("Error: Something else went wrong", error); // Log error
       }
     });
 };
 
-// Create a function to initialize app
-function init() {
-  console.log("Welcome to the README Generator!");
-  console.log("Please answer the following questions:");
+// Function to initialize app
+function init() { // Initialize app
+  console.log("Welcome to the README Generator!"); // Log welcome
+  console.log("Please answer the following questions:"); // Log instructions
   console.log("=====================================");
-  askQuestions(questions);
+  askQuestions(questions); // Ask questions
 }
 
 // Function call to initialize app
