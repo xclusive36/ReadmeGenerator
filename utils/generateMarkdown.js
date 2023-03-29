@@ -25,36 +25,27 @@ const licenses = [
   },
 ];
 
-// Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {
-  if (license) {
-    return `![https://img.shields.io/badge/license-${license}-blue.svg](https://img.shields.io/badge/license-${license}-blue.svg)`;
-  } else {
-    return "";
+function renderLicenseBadge(license) { // function that returns the license badge
+  if (license) { // if there is a license
+    return `![https://img.shields.io/badge/license-${license}-blue.svg](https://img.shields.io/badge/license-${license}-blue.svg)`; // return the license badge
+  } else { // if there is no license
+    return ""; // return an empty string
   }
 }
 
-// Create a function that returns the license link
-// If there is no license, return an empty string
-function renderLicenseLink(license) {
-  if (license) {
-    const licenseObj = licenses.find(
-      (licenseObj) => licenseObj.key === license
+function renderLicenseLink(license) { // function that returns the license link
+  if (license) { // if there is a license
+    const licenseObj = licenses.find( // find the license object
+      (licenseObj) => licenseObj.key === license // that matches the license key
     );
-    return `[${license}](${licenseObj.url})`;
-  } else {
-    return "";
+    return `[${license}](${licenseObj.url})`; // return the license link
+  } else { // if there is no license
+    return ""; // return an empty string
   }
 }
 
-// Create a function that returns the license section of README
-// If there is no license, return an empty string
-function renderLicenseSection(license) {}
-
-// Create a function to generate markdown for README
-function generateMarkdown(data) {
-  console.log("Greetings from generateMarkdown.js!");
+function generateMarkdown(data) { // function that returns the markdown
+  console.log("Greetings from generateMarkdown.js!"); // log a message to the console
   return `# ${data.title}
 
 ## Description
@@ -84,9 +75,9 @@ Github Username: ${data.username}
 Github Profile: [Github Profile](https://github.com/${data.username}/)  
 Any additional questions, please reach out to me by email:  
 Email: [Email](mailto:${data.email})
-`;
+`; // return the markdown
 }
 
-module.exports = generateMarkdown;
+module.exports = generateMarkdown; // export the generateMarkdown function
 
 // https://shields.io/category/license
