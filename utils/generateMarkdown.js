@@ -80,8 +80,10 @@ ${data.guidelines}
 ## Tests
 ${data.test}
 ## Questions
+Github Username: ${data.username}  
 Github Profile: [Github Profile](https://github.com/${data.username}/)  
-Additional questions: [Email](mailto:${data.email})
+Any additional questions, please reach out to me by email:  
+Email: [Email](mailto:${data.email})
 `;
 }
 
