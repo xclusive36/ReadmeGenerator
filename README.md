@@ -23,5 +23,7 @@
 ## Tests
 
 ## Questions
-Profile: [Github Profile](https://github.com//)  
-Additional questions: [Email](mailto:)
+Github Username:   
+Github Profile: [Github Profile](https://github.com//)  
+Any additional questions, please reach out to me by email:  
+[Email](mailto:dsf)
